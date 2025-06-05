@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>AI Tools</h2>
+<p>Here are some AI tools you can use:</p>
+<ul>
+    <li><a href="https://chat.openai.com/"  target="_blank">ChatGPT</a></li>
+    <li><a href="https://bard.google.com/"  target="_blank">Google Bard</a></li>
+    <li><a href="https://stablediffusionweb.com/"  target="_blank">Stable Diffusion</a></li>
+    <li><a href="https://www.deepl.com/translator"  target="_blank">DeepL Translator</a></li>
+</ul>
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+{% endblock %}

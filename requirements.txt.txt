@@ -1,0 +1,23 @@
+attendance_project/
+├── manage.py
+├── attendance_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+└── student_app/
+    ├── migrations/
+    ├── templates/
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── views.py
+    ├── urls.py
+    └── forms.py
+
+python manage.py malemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver

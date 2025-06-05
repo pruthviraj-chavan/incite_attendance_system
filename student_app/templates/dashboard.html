@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .info-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .action-button {
+            margin-top: 10px;
+        }
+        .logout-link {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Dashboard</h2>
+    
+        <div class="info-box">
+            <h3>Attendance Status</h3>
+            <p>Status: {{ attendance.status }}</p>
+            <form action="{% url 'request_attendance' %}" method="post" class="action-button">
+                {% csrf_token %}
+                <button type="submit">Request Attendance</button>
+            </form>
+        </div>
+    
+        <div class="info-box">
+            <h3>Fee Status</h3>
+            <p>Status: {{ fee_status.status }}</p>
+        </div>
+    
+        <hr>
+        <h3>Explore More</h3>
+        <ul>
+            <li><a href="{% url 'courses' %}">Courses</a></li>
+            <li><a href="{% url 'ai_tools' %}">AI Tools</a></li>
+            <li><a href="{% url 'resources' %}">Resources</a></li>
+        </ul>
+    
+        <a href="{% url 'profile' %}" class="action-button">Edit Profile</a>
+        <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>

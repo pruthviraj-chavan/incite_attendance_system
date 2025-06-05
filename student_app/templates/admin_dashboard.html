@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .logout-link {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <h3>Attendance Requests</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Date Requested</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                    <tr>
+                        <td>{{ request.student.user.username }}</td>
+                        <td>{{ request.date_requested }}</td>
+                        <td>{{ request.status }}</td>
+                        <td class="action-buttons">
+                            <a href="{% url 'approve_attendance' request.id %}">Approve</a>
+                            <a href="{% url 'reject_attendance' request.id %}">Reject</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="4">No requests found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>Fee Status</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fee in fees %}
+                    <tr>
+                        <td>{{ fee.student.user.username }}</td>
+                        <td>{{ fee.status }}</td>
+                        <td><a href="{% url 'update_fee_status' fee.id %}">Update</a></td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="3">No fee records found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+    </div>
+</body>
+</html>

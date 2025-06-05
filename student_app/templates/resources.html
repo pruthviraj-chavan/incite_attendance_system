@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Download Resources</h2>
+<ul>
+    {% for resource in resources %}
+        <li>
+            {{ resource.name }} - 
+            <a href="{{ resource.file }}" download>Download PDF</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+{% endblock %}
