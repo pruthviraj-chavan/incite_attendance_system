@@ -1,70 +1,81 @@
+
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block dashboard_active %}active{% endblock %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Student Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
+            background-color: #f1f5f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background: #fff;
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.01);
+        }
+        .btn-primary {
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        .info-box {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .action-button {
-            margin-top: 10px;
         }
         .logout-link {
-            float: right;
+            text-decoration: none;
+            color: #dc3545;
+            font-weight: 500;
+        }
+        .logout-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Student Dashboard</h2>
-    
-        <div class="info-box">
-            <h3>Attendance Status</h3>
-            <p>Status: {{ attendance.status }}</p>
-            <form action="{% url 'request_attendance' %}" method="post" class="action-button">
-                {% csrf_token %}
-                <button type="submit">Request Attendance</button>
-            </form>
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary">👩‍🎓 Student Dashboard</h2>
+            <a href="{% url 'logout' %}" class="logout-link">Logout</a>
         </div>
-    
-        <div class="info-box">
-            <h3>Fee Status</h3>
-            <p>Status: {{ fee_status.status }}</p>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card p-4 bg-white">
+                    <h4 class="mb-2">Attendance Status</h4>
+                    <p class="mb-3">Status: <strong>{{ attendance.status }}</strong></p>
+                    <form action="{% url 'request_attendance' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Request Attendance</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-4 bg-white">
+                    <h4 class="mb-2">Fee Status</h4>
+                    <p>Status: <strong>{{ fee_status.status }}</strong></p>
+                </div>
+            </div>
         </div>
-    
-        <hr>
-        <h3>Explore More</h3>
-        <ul>
-            <li><a href="{% url 'courses' %}">Courses</a></li>
-            <li><a href="{% url 'ai_tools' %}">AI Tools</a></li>
-            <li><a href="{% url 'resources' %}">Resources</a></li>
-        </ul>
-    
-        <a href="{% url 'profile' %}" class="action-button">Edit Profile</a>
-        <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+
+        <div class="card mt-5 p-4 bg-white">
+            <h4 class="mb-3">📚 Explore More</h4>
+            <ul class="list-unstyled">
+                <li><a href="{% url 'courses' %}" class="text-decoration-none text-primary">📘 Courses</a></li>
+                <li><a href="{% url 'ai_tools' %}" class="text-decoration-none text-primary">🤖 AI Tools</a></li>
+                <li><a href="{% url 'resources' %}" class="text-decoration-none text-primary">🗂 Resources</a></li>
+            </ul>
+        </div>
+
+        <div class="mt-4">
+            <a href="{% url 'profile' %}" class="btn btn-outline-secondary">Edit Profile</a>
+        </div>
     </div>
 </body>
 </html>
+{% endblock %}

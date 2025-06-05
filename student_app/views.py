@@ -40,7 +40,13 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
-            return redirect('dashboard')
+
+            # Redirect admins to admin dashboard
+            if user.is_staff:
+                return redirect('admin_dashboard')
+            else:
+                return redirect('dashboard')  # Regular users go to student dashboard
+
         else:
             messages.error(request, "Invalid username or password.")
     else:

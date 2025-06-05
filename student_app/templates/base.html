@@ -4,32 +4,133 @@
     <meta charset="UTF-8">
     <title>{% block title %}Student Portal{% endblock %}</title>
     <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f9f9f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            padding: 0;
         }
-        nav a {
-            margin-right: 15px;
+
+        a {
             text-decoration: none;
-            color: #007bff;
         }
+
+        /* Header / Navbar */
+        header {
+            background-color: #2d3748; /* Dark Blue-Gray */
+            padding: 15px 30px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            color: #cbd5e0;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #63b3ed;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #63b3ed;
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Content Area */
         .content {
-            margin-top: 20px;
+            padding: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid #4a5568;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="{% url 'courses' %}">Courses</a>
-        <a href="{% url 'ai_tools' %}">AI Tools</a>
-        <a href="{% url 'resources' %}">Resources</a>
-        <a href="{% url 'logout' %}">Logout</a>
-    </nav>
-    <div class="content">
-        {% block content %}
-        {% endblock %}
+
+<header>
+    <div class="navbar">
+        <div class="logo">🎓 StudentHub</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'dashboard' %}" class="{% block dashboard_active %}{% endblock %}">Dashboard</a></li>
+            <li><a href="{% url 'courses' %}" class="{% block courses_active %}{% endblock %}">Courses</a></li>
+            <li><a href="{% url 'ai_tools' %}" class="{% block ai_tools_active %}{% endblock %}">AI Tools</a></li>
+            <li><a href="{% url 'resources' %}" class="{% block resources_active %}{% endblock %}">Resources</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
     </div>
+</header>
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
 </body>
 </html>

@@ -1,12 +1,108 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>AI Tools</h2>
-<p>Here are some AI tools you can use:</p>
-<ul>
-    <li><a href="https://chat.openai.com/"  target="_blank">ChatGPT</a></li>
-    <li><a href="https://bard.google.com/"  target="_blank">Google Bard</a></li>
-    <li><a href="https://stablediffusionweb.com/"  target="_blank">Stable Diffusion</a></li>
-    <li><a href="https://www.deepl.com/translator"  target="_blank">DeepL Translator</a></li>
-</ul>
-<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f7fafc;
+        color: #1a202c;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: auto;
+        padding: 2rem;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2d3748;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #4a5568;
+        margin-bottom: 2rem;
+    }
+
+    .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .tool-card {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.2s ease;
+    }
+
+    .tool-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .tool-card a {
+        text-decoration: none;
+        color: #4299e1;
+        font-weight: bold;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 2rem;
+        text-align: center;
+        color: #48bb78;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container">
+    <h2>AI Tools for Students</h2>
+    <p>Here are some powerful AI tools designed to help students learn, grow, and succeed.</p>
+
+    <div class="tool-grid">
+        <!-- Existing Tools -->
+        <div class="tool-card"><a href="https://chat.openai.com/"  target="_blank">ChatGPT</a></div>
+        <div class="tool-card"><a href="https://bard.google.com/"  target="_blank">Google Bard</a></div>
+        <div class="tool-card"><a href="https://stablediffusionweb.com/"  target="_blank">Stable Diffusion</a></div>
+        <div class="tool-card"><a href="https://www.deepl.com/translator"  target="_blank">DeepL Translator</a></div>
+
+        <!-- New AI Tools for Village Students -->
+        <div class="tool-card"><a href="https://www.khanacademy.org/"  target="_blank">Khan Academy AI Tutor</a></div>
+        <div class="tool-card"><a href="https://www.byjus.com/"  target="_blank">BYJU'S AI Learning</a></div>
+        <div class="tool-card"><a href="https://www.doubtnut.com/"  target="_blank">Doubtnut (Hindi AI Tutor)</a></div>
+        <div class="tool-card"><a href="https://quizlet.com/"  target="_blank">Quizlet AI Flashcards</a></div>
+        <div class="tool-card"><a href="https://www.socratic.org/"  target="_blank">Socratic by Google</a></div>
+        <div class="tool-card"><a href="https://www.zigya.com/"  target="_blank">Zigya AI Question Bank</a></div>
+        <div class="tool-card"><a href="https://www.toppr.com/"  target="_blank">Toppr AI Study Tools</a></div>
+        <div class="tool-card"><a href="https://www.meritnation.com/"  target="_blank">Meritnation AI Learning</a></div>
+        <div class="tool-card"><a href="https://www.vedantu.com/"  target="_blank">Vedantu Live Classes + AI</a></div>
+        <div class="tool-card"><a href="https://www.coursera.org/"  target="_blank">Coursera AI Courses</a></div>
+        <div class="tool-card"><a href="https://www.edx.org/"  target="_blank">edX Free AI Learning</a></div>
+        <div class="tool-card"><a href="https://www.canva.com/"  target="_blank">Canva Design AI</a></div>
+        <div class="tool-card"><a href="https://www.notion.so/"  target="_blank">Notion AI Notes & Planning</a></div>
+        <div class="tool-card"><a href="https://www.trello.com/"  target="_blank">Trello AI Task Planner</a></div>
+        <div class="tool-card"><a href="https://www.evernote.com/"  target="_blank">Evernote AI Note Taking</a></div>
+        <div class="tool-card"><a href="https://www.grammarly.com/"  target="_blank">Grammarly AI Writing</a></div>
+        <div class="tool-card"><a href="https://www.jotform.com/ai-form-builder"  target="_blank">Jotform AI Form Builder</a></div>
+        <div class="tool-card"><a href="https://www.typingdna.com/"  target="_blank">TypingDNA AI Typing Practice</a></div>
+        <div class="tool-card"><a href="https://www.classpoint.ai/"  target="_blank">ClassPoint AI Presentation Tool</a></div>
+        <div class="tool-card"><a href="https://www.speechify.com/"  target="_blank">Speechify AI Text-to-Speech</a></div>
+    </div>
+
+    <div style="text-align:center;">
+        <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+    </div>
+</div>
 {% endblock %}
